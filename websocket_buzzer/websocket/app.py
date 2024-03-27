@@ -5,16 +5,31 @@ from buzzer import Buzzer
 
 started = False
 round = None
+players = []
 
 async def handler(websocket):
+    # Gloval variables
     global started
     global round
+    global players
+
+    # Handler
     async for message in websocket:
         event_recv = json.loads(message)
         print('message received:', event_recv)
-        if event_recv["type"] == "start":
+        if event_recv["type"] == "connection":
+            players.append(websocket)
+            event_sent = {
+                "type": "connected",
+            }
+            websocket.send(json.dumps(event_sent))
+        elif event_recv["type"] == "disconnection":
+            players.remove(websocket)
+        elif (event_recv["type"] == "start") and (event_recv["player"] == "referee"):
             started = True
             round = Buzzer()
+            event_sent = event_recv
+            websockets.broadcast(players, json.dumps(event_sent))
         elif event_recv["type"] == "buzz":
             if started:
                 round.buzz(event_recv["player"])
@@ -23,7 +38,9 @@ async def handler(websocket):
                     "player": round.winner,
                     "time": round.time
                 }
-            websockets.broadcast(json.dumps(event_sent))
+                started = False
+            websockets.broadcast(players, json.dumps(event_sent))
+        print('message sent:', event_sent)
 
 
 async def main():

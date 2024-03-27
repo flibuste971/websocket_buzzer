@@ -7,7 +7,7 @@ Placez-vous dans l'environnement avec la commande:
 poetry shell
 ```
 
-Placer-vous dans le répertoire **/websocket_buzzer/backend** et lancer le websocket avec la commande:
+Placer-vous dans le répertoire **/websocket_buzzer/websocket** et lancer le websocket avec la commande:
 ```bash
 python app.py
 ```

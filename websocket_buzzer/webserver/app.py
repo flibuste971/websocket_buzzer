@@ -12,7 +12,15 @@ def red_player():
 
 @app.route('/blu_player')
 def blue_player():
-    return render_template('blue_player.html')
+    return render_template('blu_player.html')
+
+@app.route('/green_player')
+def green_player():
+    return render_template('green_player.html')
+
+@app.route('/yellow_player')
+def yellow_player():
+    return render_template('yellow_player.html')
 
 @app.route('/referee')
 def referee():

@@ -1,45 +1,46 @@
-const websocket = new WebSocket("ws://localhost:8081/");
-var reference = Date.now();
-var timer_running = true;
+  var reference = Date.now();
+  var timer_running = false;
 
-window.addEventListener("DOMContentLoaded", () => {
-  receiveMsg();
-  setInterval(timer, 10);
-});
 
-window.addEventListener("keydown", (event) => {
-  if (event.key == " " || event.key == "Space") {
-    sendMsg("player", "buzz");
+function initWebSocket(websocket) {
+  websocket.onopen = function () {
+    let event = {
+      type: "connection",
+    }
+    websocket.send(JSON.stringify(event));
   }
-});
+}
 
 function showMessage(message) {
   window.setTimeout(() => window.alert(message), 50);
 }
 
 function sendMsg(player, msg) {
+  globalThis
   if (msg === "buzz") {
     var event = {
       type: "buzz",
       player: player,
     };
   }
-  if (msg === "start" && player === "referee") {
+  if (msg === "start") {
     var event = {
       type: "start",
+      player: player,
     };
   }
   websocket.send(JSON.stringify(event));
 }
 
-function receiveMsg() {
+function receiveMsg(websocket) {
   websocket.onmessage = function (event) {
     var msg = JSON.parse(event.data);
     console.log(msg);
     if (msg.type === "winner") {
       timer(msg.time*1000);
+      document.getElementById("winner-announcement-div").style.display = "flex";
       document.getElementById("winner-announcement").innerHTML =
-        "Le " +
+        "L' " +
         msg.player +
         " a buzzé en " +
         msg.time.toFixed(2) +
@@ -49,7 +50,7 @@ function receiveMsg() {
     if (msg.type === "start") {
       reference = Date.now();
       timer_running = true;
-      document.getElementById("winner-announcement").innerHTML = "";
+      document.getElementById("winner-announcement-div").style.display = "none";
     }
   };
 }
@@ -77,3 +78,12 @@ function timer(setter) {
     min.innerHTML = Math.floor(diff / 60000);
   }
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  const websocket = new WebSocket("ws://localhost:8081/");
+  globalThis.websocket = websocket;
+  initWebSocket(websocket);
+  receiveMsg(websocket);
+  setInterval(timer, 10);
+});
+

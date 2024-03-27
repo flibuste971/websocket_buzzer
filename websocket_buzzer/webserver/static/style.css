@@ -48,14 +48,13 @@ main {
 
 #winner-announcement-div{
   position: absolute;
-  display: flex;
+  display: None;
   justify-content: center;
   align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -5;
 }
 
 #winner-announcement {
@@ -63,6 +62,7 @@ main {
   background-color: rgba(255, 0, 0, 0.8);
   border-radius: 5px;
   margin: 2rem;
+  padding: 1rem;
   z-index: 3;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
 }
@@ -101,12 +101,28 @@ main {
   background-color: red;
 }
 
+#green_buzzer {
+  background-color: green;
+}
+
+#yellow_buzzer {
+  background-color: yellow;
+}
+
 #blu_buzzer:active {
   background-color: darkblue;
 }
 
 #red_buzzer:active {
   background-color: darkred;
+}
+
+#green_buzzer:active {
+  background-color: darkgreen;
+}
+
+#yellow_buzzer:active {
+  background-color: darkyellow;
 }
 
 #dark-arc {
@@ -154,4 +170,66 @@ main {
 
 #start-button:active {
   background-color: darkgreen;
+}
+
+.button {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.button-blu {
+  background-color: blue;
+}
+
+.button-blu:active {
+  background-color: darkblue;
+}
+
+.button-green {
+  background-color: green;
+}
+
+.button-green:active {
+  background-color: darkgreen;
+}
+
+.button-yellow {
+  background-color: yellow;
+  color: black !important;
+}
+
+.button-yellow:active {
+  background-color: orange;
+}
+
+.button-red {
+  background-color: red;
+}
+
+.button-red:active {
+  background-color: darkred;
+}
+
+.button-referee {
+  background-color: darkgray;
+}
+
+.button-referee:active {
+  background-color: grey;
+}
+
+#selector-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;;
+  gap: 1rem;
+}
+
+#selector-div > a {
+  text-decoration: none;
 }
