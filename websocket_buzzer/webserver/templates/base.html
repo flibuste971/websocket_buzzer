@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="static/main.js"></script>
+    <link rel="stylesheet" href="static/style.css" />
+    <title>Buzzer</title>
+  </head>
+  <body>
+    <main>
+      {% block content %}
+      <header id="main-header">
+        <h1>Bienvenue</h1>
+      </header>
+      <div id="winner-announcement-div">
+        <span id="winner-announcement"></span>
+      </div>
+      <div id="main-content">
+        <div id="timer">
+          <span id="chrono-min">0</span>:<span id="chrono-sec">00</span>:<span
+            id="chrono-millisec"
+            >00</span
+          >
+        </div>
+
+        <div id="buzzer-div">
+          <div id="buzzer-box">
+            <button id="buzzer" onclick="sendMsg('Joueur Rouge', 'buzz')">
+              <div id="dark-arc"></div>
+              <div id="white-sphere"></div>
+            </button>
+            <div id="buzzer-shadow"></div>
+          </div>
+        </div>
+
+        <button id="start-button" onclick="sendMsg('referee', 'start')">
+          Start
+        </button>
+      </div>
+      {% endblock %}
+    </main>
+  </body>
+</html>

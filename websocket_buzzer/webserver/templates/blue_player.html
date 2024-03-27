@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header id="main-header">
+    <h1>Bienvenue</h1>
+  </header>
+  <div id="winner-announcement-div">
+    <span id="winner-announcement"></span>
+  </div>
+  <div id="main-content">
+    <div id="timer">
+      <span id="chrono-min">0</span>:<span id="chrono-sec">00</span>:<span
+        id="chrono-millisec"
+        >00</span
+      >
+    </div>
+
+    <div id="buzzer-div">
+      <div id="buzzer-box">
+        <button id="blu_buzzer" class="buzzer" onclick="sendMsg('Joueur Bleu', 'buzz')">
+          <div id="dark-arc"></div>
+          <div id="white-sphere"></div>
+        </button>
+        <div id="buzzer-shadow"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

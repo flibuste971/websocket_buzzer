@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header id="main-header">
+    <h1>Bienvenue</h1>
+  </header>
+  <div id="winner-announcement-div">
+    <span id="winner-announcement"></span>
+  </div>
+  <div id="main-content">
+    <div id="timer">
+      <span id="chrono-min">0</span>:<span id="chrono-sec">00</span>:<span
+        id="chrono-millisec"
+        >00</span
+      >
+    </div>
+
+    <div>
+      <a href="/red_player">Joueur rouge</a>
+      <a href="/blu_player">Joueur bleu</a>
+      <a href="/referee">Arbitre</a>
+    </div>
+  
+  </div>
+{% endblock %}
