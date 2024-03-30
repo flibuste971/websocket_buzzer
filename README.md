@@ -34,7 +34,7 @@ Le terminal d'où sera lancée la commande sera bloquée tant que le websocket e
 
 Placez-vous dans le répertoire/ **/websocket_buzzer/webserver** et lancez le web server avec la commande :
 ```bash
-flask run
+flask run --host=0.0.0.0
 ```
 Il devrait être écrit dans le terminal le port ainsi que l'ip du serveur web.
 
