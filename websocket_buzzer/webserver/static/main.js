@@ -80,7 +80,7 @@ function timer(setter) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const websocket = new WebSocket("ws://localhost:8081/");
+  const websocket = new WebSocket("ws://" + window.location.hostname + ":8081/");
   globalThis.websocket = websocket;
   initWebSocket(websocket);
   receiveMsg(websocket);
