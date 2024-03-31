@@ -15,8 +15,11 @@
       >
     </div>
 
-    <button id="start-button" onclick="sendMsg('referee', 'start')">
+    <button class="referee-buttons" id="start-button" onmousedown="sendMsg('referee', 'start')">
       Start
+    </button>
+    <button class="referee-buttons" id="start-button" onmousedown="sendMsg('referee', 'stop')">
+      Stop
     </button>
   </div>
 {% endblock %}

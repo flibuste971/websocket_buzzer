@@ -17,18 +17,10 @@ function showMessage(message) {
 function sendMsg(player, msg) {
   let event;
   globalThis;
-  if (msg === "buzz") {
-    event = {
-      type: "buzz",
-      player: player,
-    };
-  }
-  if (msg === "start") {
-    event = {
-      type: "start",
-      player: player,
-    };
-  }
+  event = {
+    type: msg,
+    player: player,
+  };
   websocket.send(JSON.stringify(event));
 }
 
@@ -48,6 +40,9 @@ function receiveMsg(websocket) {
       reference = Date.now();
       timer_running = true;
       document.getElementById("winner-announcement-div").style.display = "none";
+    }
+    if (msg.type === "stop") {
+      timer_running = false;
     }
   };
 }
