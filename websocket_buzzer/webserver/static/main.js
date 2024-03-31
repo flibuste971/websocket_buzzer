@@ -1,14 +1,13 @@
-  var reference = Date.now();
-  var timer_running = false;
-
+let reference = Date.now();
+let timer_running = false;
 
 function initWebSocket(websocket) {
   websocket.onopen = function () {
     let event = {
       type: "connection",
-    }
+    };
     websocket.send(JSON.stringify(event));
-  }
+  };
 }
 
 function showMessage(message) {
@@ -16,15 +15,16 @@ function showMessage(message) {
 }
 
 function sendMsg(player, msg) {
-  globalThis
+  let event;
+  globalThis;
   if (msg === "buzz") {
-    var event = {
+    event = {
       type: "buzz",
       player: player,
     };
   }
   if (msg === "start") {
-    var event = {
+    event = {
       type: "start",
       player: player,
     };
@@ -33,18 +33,15 @@ function sendMsg(player, msg) {
 }
 
 function receiveMsg(websocket) {
+  let msg;
   websocket.onmessage = function (event) {
-    var msg = JSON.parse(event.data);
+    msg = JSON.parse(event.data);
     console.log(msg);
     if (msg.type === "winner") {
-      timer(msg.time*1000);
+      timer(msg.time * 1000);
       document.getElementById("winner-announcement-div").style.display = "flex";
       document.getElementById("winner-announcement").innerHTML =
-        "L' " +
-        msg.player +
-        " a buzzé en " +
-        msg.time.toFixed(2) +
-        "s !";
+        "L' " + msg.player + " a buzzé en " + msg.time.toFixed(2) + "s !";
       timer_running = false;
     }
     if (msg.type === "start") {
@@ -59,13 +56,13 @@ function timer(setter) {
   let millisec = document.getElementById("chrono-millisec");
   let sec = document.getElementById("chrono-sec");
   let min = document.getElementById("chrono-min");
+  let diff;
   if (timer_running) {
     if (setter) {
-      var diff = setter;
+      diff = setter;
       console.log(diff);
     } else {
-      var diff = Date.now() - reference;
-
+      diff = Date.now() - reference;
     }
     millisec.innerHTML =
       Math.floor(diff / 10) % 100 > 9
@@ -80,10 +77,11 @@ function timer(setter) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const websocket = new WebSocket("ws://" + window.location.hostname + ":8081/");
+  const websocket = new WebSocket(
+    "ws://" + window.location.hostname + ":8081/"
+  );
   globalThis.websocket = websocket;
   initWebSocket(websocket);
   receiveMsg(websocket);
   setInterval(timer, 10);
 });
-
