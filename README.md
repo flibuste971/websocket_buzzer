@@ -1,13 +1,13 @@
 
 # Configuration préliminaire
 
-## 1. Avec poetry 
+## Avec poetry 
 Si vous possédez le package poetry, placez-vous dans n'importe quel répertoire et tapez la commande suivante :
 ```bash
 poetry update
 ```
 
-## 2. Avec pip
+## Avec pip
 Si vous préférez utiliser pip, placez-vous dans le répertoire racine et tapez la commande suivante :
 ```
 pip install -r requirements.txt
